@@ -1,0 +1,32 @@
+Example:
+do{
+	int a = count + 1
+	b = b + a*10
+}while(count<=100)
+
+
+S -> lang
+lang -> (dowhile_expr)*
+dowhile_expr -> dowhile_header dowhile_statement
+dowhile_header -> DO_KW LB dowhile_body RB
+dowhile_body -> (var_value ASSIGN_OP assign_expr)*
+var_value -> var_decl | VAR_NAME
+assign_expr -> logic_value(LOGIC_OP logic_value)*
+logic_value -> VAR_NAME | DIGIT
+var_decl -> VAR_TYPE VAR_NAME
+dowhile_statement -> WHILE_KW L_FB while_condition R_FB
+while_condition -> logic_value COMP_OP logic_value
+
+Lexeme:
+DO_KW -> 'do'
+LB -> '{'
+RB -> '}'
+ASSIGN_OP -> '='
+VAR_NAME -> [a-z]{1}[a-zA-Z 0-9]*
+LOGIC_OP -> '+' | '-'  | '*' | ':' 
+COMP_OP -> | '==' | '>' | '>=' | '<' | '<='
+DIGIT -> 0 | [1-9]{1}[0-9]* | 0, ',', [0-9]+
+VAR_TYPE -> 'int' | 'float'
+WHILE_KW -> 'while'
+L_FB -> '('
+R_FB -> ')'
